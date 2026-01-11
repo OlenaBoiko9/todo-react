@@ -14,17 +14,41 @@ const Todo = () => {
     console.log('Видаляємо всі задачі!')
   }
 
+  const deleteTask = (taskId) => {
+    console.log (`Видаляємо задачу з id: ${taskId}`)
+  }
+
+  const toggleTaskComplete = (taskId, isDone) => {
+    console.log(`Задача ${taskId} ${isDone ? 'виконана' : 'не виконана'}`)
+  }
+
+  const filterTasks = (query) => {
+    console.log(`Пошук: ${query}`)
+  }
+
+  const addTask = () => {
+    console.log('Задача додана!')
+  }
+
     return (
     <div className="todo">
       <h1 className="todo__title">To Do List</h1>
-      <AddTaskForm />
-      <SearchTaskForm />
+        <AddTaskForm
+        addTask={addTask}
+        />
+        <SearchTaskForm
+        onSearchInput={filterTasks}
+        />
        <TodoInfo
         total={tasks.length}
           done={tasks.filter(({ isDone }) => isDone).length}
           onDeleteAllButtonClick={deleteAllTasks}
       />
-      <TodoList tasks={tasks} />
+        <TodoList
+          tasks={tasks}
+          onDeleteTaskButtonClick={deleteTask}
+          onTaskCompleteChange={toggleTaskComplete}
+        />
     </div> 
     )
 }
