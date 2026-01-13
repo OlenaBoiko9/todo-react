@@ -3,7 +3,9 @@ import Field from "./Field"
 
 const AddTaskForm = (props) => {
     const {
-      addTask,
+        addTask,
+        nemTaskTitle,
+        setNemTaskTitle,
     } = props
 
     const onSubmit = (event) => {
@@ -16,6 +18,8 @@ const AddTaskForm = (props) => {
                 className="todo__field"
                 label="New task title"
                 id="new-task"
+                value={nemTaskTitle}
+                onInput={(event) => setNemTaskTitle (event.target.value)}
             />
        <Button type='submit'>Add</Button>
     </form>
